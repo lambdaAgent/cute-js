@@ -1,4 +1,4 @@
-This Library some common helpful tools.
+This Library contains some common helpful tools that I use the most as web developer.
 
 ### 1.Deep Clone Object
 This function will clone an object, a very simple and fast immutability function.
