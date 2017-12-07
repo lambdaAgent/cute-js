@@ -28,8 +28,10 @@ example:
     newObj.postalCode = '1';
     
 ### 2. Recursive Assign Value to Object
-This function will assign value according to path provided to an object.
-Warning: this function mutate the object, so use it with deepCloneObject to achieve immutability.
+* This function will assign value according to path provided to an object.
+* When accessing properties on object that has deep nested properties, the warning just throw error that is not helpful.
+  With this function it will show the object and the path that fails.
+* Warning: this function mutate the object, so use it with deepCloneObject to achieve immutability.
 example: 
     
     import { recursiveAssignObject } from 'cute-js';

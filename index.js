@@ -1,11 +1,11 @@
-const deepCloneObject = require('./CommonUtilForObject/deepCloneObject');
-const recursiveAssignObject = require('./CommonUtilForObject/recursiveAssignObject');
-const recursiveGetProperties = require('./CommonUtilForObject/recursiveGetProperties');
-const { createClickEvent } = require('./CommonUtilForDOM');
+const { deepCloneObject } = require('./CommonUtilForObject/deepCloneObject');
+const { recursiveAssignObject } = require('./CommonUtilForObject/recursiveAssignObject');
+const { recursivelyGetProperties } = require('./CommonUtilForObject/recursivelyGetProperties');
+const { createClickEvent } = require('./CommonUtilForDOM/createClickEvent');
 
 module.exports = {
 	createClickEvent,
-	deepClone,
-	recursiveGetProperties,
+	deepCloneObject,
+	recursivelyGetProperties,
 	recursiveAssignObject
 }

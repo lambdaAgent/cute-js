@@ -1,3 +1,4 @@
+const { handleFailure } = require('./handleFailure');
 
 /**
  * Warning, this function mutate object, combine it with deepCloneObject for immutability
@@ -7,12 +8,15 @@
  * console.log(postalCode.address.postalCode) // 'hello'
  */
 exports.recursiveAssignObject = function recursiveAssignObject(object, path, value) {
+  if(!path) return obj;
   function recursive(object, value, path){
     const pathArray = path.split('.');
     if (pathArray.length <= 1){
       object[path] = value;
       return object
     }
+
+    handleFailure(object, pathArray[0]);
 
     const nextObject = object[pathArray[0]];
     const nextPath = pathArray.slice(1).join('.');
@@ -22,3 +26,21 @@ exports.recursiveAssignObject = function recursiveAssignObject(object, path, val
   recursive(object, value, path);
   return object;
 }
+
+
+
+
+exports.recursivelyGetProperties = function recursivelyGetProperties(obj, address){
+  if (!address) return obj;
+  if (address.indexOf('.') < 0) {
+    return obj[address];
+  }
+  const addressArray = address.split('.');
+  const headAddress = addressArray[0];
+  const tailAddress = addressArray.slice(1).join('.');
+  
+  handleFailure(obj, headAddress);
+  const memoizedObj = obj[headAddress];
+  return recursivelyGetValue(memoizedObj, tailAddress);
+}
+
