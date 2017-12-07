@@ -1,7 +1,7 @@
 This Library some common helpful tools.
 
 ### 1.Deep Clone Object
-This function will clone an object, a very simple immutability function.
+This function will clone an object, a very simple and fast immutability function.
 example: 
     
     import { deepCloneObject, deepEqual } from 'cute-js';
@@ -21,8 +21,11 @@ example:
     }
     
     const newObj = deepCloneObject(obj);
+    
     deepEqual(newObj, obj); // true
     
+    newObj.age = 5;
+    newObj.postalCode = '1';
     
 ### 2. Recursive Assign Value to Object
 This function will assign value according to path provided to an object.
