@@ -9,7 +9,10 @@ exports.deepCloneObject = function deepCloneObject(obj, options) {
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
-  let temp = obj.constructor(); // give temp the original obj's constructor
+  let temp = {}; // give temp the original obj's constructor
+  console.log('constructor', obj.__proto__.constructor);
+  temp.__proto__ = obj.__proto__;
+  console.log(obj);
   for (let key in obj) {
     if(excludeKey && key === excludeKey){
       temp[key] = temp[key];

@@ -38,6 +38,7 @@ describe("recursiveAssign", function() {
 		};
 
 		recursiveAssignObject(person, 'address.geoLocation.aasdf.asdf', '0');
+		expect(person.address.geoLocation.aasdf).to.throw(Error);
 
 	});
 });

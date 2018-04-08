@@ -18,10 +18,21 @@ describe("deepCloneObject", function() {
 			}
 		};
 
-		const newPerson = deepCloneObject(person);
+		function Car (model, year){
+			this.model = model;
+			this.year = year;
+		}
 
+		const _car = new Car('Chevy',1991);
+		console.log(_car.__proto__);
+		const newCar = deepCloneObject(_car);
+		const newPerson = deepCloneObject(person);
+		console.log('type', newCar instanceof Car);
+		console.log(newPerson);
 		expect(newPerson).to.have.a.property('name', 'Joe');
 		expect(newPerson.address).to.have.a.property('postalCode', 11520);
-	});
+		expect(newCar).to.have.a.property('model', 'Chevy');
+		expect(newCar instanceof Car).to.be.true 
+	});		
 });
 
