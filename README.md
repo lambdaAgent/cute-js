@@ -1,9 +1,22 @@
-This Library contains some common helpful tools that I use the most as web developer.
+* This Library contains some common helpful tools that I use the most as web developer.
+* For documentation, A type annotation that is similar to Haskell is chosen as it's very compact and clear to read.
+
+1. [Guide for Type annotation](#guide-for-type-annotation)
+    * [type1](#type1)
+    * [type2](#type2)
+
+2. [Examples](#examples)
+    * [Updating State in React](#1-updating-a-state-in-react)
+
+3. [List of Functions](#list-of-functions)
+    * [deepCloneObject](#1deep-clone-object)
+    * [recursiveAssignObject](#2-recursive-assign-value-to-object)
+    * [recursivelyGetProperties](#3-recursive-get-value-from-object)
 
 # Guide for Type annotation
 For documentation, A type annotation that is similar to Haskell is chosen as it's very compact and clear to read.
 
-### Example1
+### type1
 ```
     recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
 ```
@@ -12,7 +25,7 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 3. It accepts, 3 parameters: (obj, path, value).
 
 
-### Example2
+### type2
 ```
    onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
 ```
@@ -71,10 +84,10 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 
 
 
-# Functions:
+# List of Functions:
 ### 1.Deep Clone Object
-This function will clone an object, a very simple and fast immutability function.
-It works with array too. Although it's more efficient to use Array.slice() instead.
+* This function will clone an object, a very simple and fast immutability function.
+* It works with array too, although it's more efficient to use Array.slice() instead.
 
 ```
     TypeAnnotation:
