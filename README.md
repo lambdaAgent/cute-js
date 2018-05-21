@@ -1,39 +1,17 @@
 * This Library contains some common helpful tools that I use the most as web developer.
 * For documentation, A type annotation that is similar to Haskell is chosen as it's very compact and clear to read.
 
-1. [Guide for Type annotation](#guide-for-type-annotation)
+1. [Examples](#examples-in-react)
+    * [Updating State in React](#1-updating-and-validating-state-in-react)
+
+2. [Guide for Type annotation](#guide-for-type-annotation)
     * [type1](#type1)
     * [type2](#type2)
-
-2. [Examples](#examples-in-react)
-    * [Updating State in React](#1-updating-and-validating-state-in-react)
 
 3. [List of Functions](#list-of-functions)
     * [deepCloneObject](#1deep-clone-object)
     * [recursiveAssignObject](#2-recursive-assign-value-to-object)
     * [recursivelyGetProperties](#3-recursive-get-value-from-object)
-
-# Guide for Type annotation
-For documentation, A type annotation that is similar to Haskell is chosen as it's very compact and clear to read.
-
-## Example Of Types:
-### type1
-```
-    recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
-```
-1. the name of function is `recursiveAssignObject`
-2. This function return `null`
-3. It accepts, 3 parameters: (obj, path, value).
-
-
-### type2
-```
-   onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
-```
-1. the name of function is `onFieldChange`
-2. This function return `Object of Any structure`
-3. It accepts, 2 parameters: (fieldPath, e).
-
 
 # Examples in React:
 ### 1. Updating and validating state in React
@@ -106,6 +84,28 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 
     export default SimpleForm;
 ```
+
+
+# Guide for Type annotation
+For documentation, A type annotation that is similar to Haskell is chosen as it's very compact and clear to read.
+
+## Example Of Types:
+### type1
+```
+    recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
+```
+1. the name of function is `recursiveAssignObject`
+2. This function return `null`
+3. It accepts, 3 parameters: (obj, path, value).
+
+
+### type2
+```
+   onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
+```
+1. the name of function is `onFieldChange`
+2. This function return `Object of Any structure`
+3. It accepts, 2 parameters: (fieldPath, e).
 
 
 
