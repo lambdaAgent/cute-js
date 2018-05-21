@@ -22,44 +22,60 @@ import {recursivelyGetProperties, recursiveAssignObject, deepCloneObject } from 
 
 class SimpleForm extends React.Component {
     state = {
-        location: {
-            address: null,
-            country: null,
-            geoLocation: {
-                lat: null,
-                lng: null
-            }
+      location: {
+          address: null,
+          country: null,
+          geoLocation: {
+              lat: null,
+              lng: null
+          }
+      },
+      errorLocation : {
+        address: null,
+        country: null,
+        geoLocation: {
+            lat: null,
+            lng: null
         }
+      }
     }
 
-    
     render(){
+        const errorStyle={ color: 'red' };
         return (
             <form>
                 <label>Latitude</label>
                 <input
                     value={this.state.location.geoLocation.lat}
-                    onChange={this.onFieldChange.bind(this, 'location.geoLocation.lat')}
-                    onBlur={this.onValidating.bind(this, 'location.geoLocation.lat')}
+                    onChange={this.onFieldChange.bind(this, 'geoLocation.lat')}
+                    onBlur={this.onValidating.bind(this, 'geoLocation.lat')}
                 />
+                <div style={errorStyle}>{this.state.errorLocation.geoLocation.lat}</div>
+
                 <label>Longitude</label>
                 <input
                     value={this.state.location.geoLocation.lng}
-                    onChange={this.onFieldChange.bind(this, 'location.geoLocation.lng')}
-                    onBlur={this.onValidating.bind(this, 'location.geoLocation.lng')}
+                    onChange={this.onFieldChange.bind(this, 'geoLocation.lng')}
+                    onBlur={this.onValidating.bind(this, 'geoLocation.lng')}
                 />
+                <div style={errorStyle}>{this.state.errorLocation.geoLocation.lng}</div>
+
                 <label>Address</label>
                 <input
                     value={this.state.location.address}
-                    onChange={this.onFieldChange.bind(this, 'location.address')}
-                    onBlur={this.onValidating.bind(this, 'location.address')}
+                    onChange={this.onFieldChange.bind(this, 'address')}
+                    onBlur={this.onValidating.bind(this, 'address')}
                 />
+                <div style={errorStyle}>{this.state.errorLocation.address}</div>
+
+
                 <label>Country</label>
                 <input
                     value={this.state.location.country}
-                    onChange={this.onFieldChange.bind(this, 'location.country')}
-                    onBlur={this.onValidating.bind(this, 'location.country')}
+                    onChange={this.onFieldChange.bind(this, 'country')}
+                    onBlur={this.onValidating.bind(this, 'country')}
                 />
+                <div style={errorStyle}>{this.state.errorLocation.country}</div>
             </form>
         );
     }
@@ -68,17 +84,23 @@ class SimpleForm extends React.Component {
     onFieldChange = (fieldPath, e) => {
         const value = e.target.value;
         const cloneState = deepCloneObject(this.state);
-        recursiveAssignObject(cloneState, fieldPath, value );
-        this.setState({ location: cloneState.location });
+        const { location } = cloneState;
+        recursiveAssignObject(location, fieldPath, value );
+        this.setState({ location });
     }
 
     // onValidating = fieldPath:String -> e:Object{Event} -> null
     onValidating = (fieldPath, e) => {
-        const value = recursivelyGetProperties(this.state, fieldPath );
+        const value = recursivelyGetProperties(this.state.location, fieldPath );
+        const cloneError = deepCloneObject(this.state.errorLocation);
         const isValid = !!value;
+        console.log(isValid);
         if(!isValid){
-            console.error('Not valid')
+            recursiveAssignObject(cloneError, fieldPath, 'NOT VALID')
+        } else {
+            recursiveAssignObject(cloneError, fieldPath, '')     
         }
+        this.setState({ errorLocation: cloneError });
     }
 }
 
