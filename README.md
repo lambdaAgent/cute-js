@@ -135,7 +135,7 @@ onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
 ### 1.Deep Clone Object
 * This function will clone an object, a very simple and fast immutability function.
 * It works with array too, although it's more efficient to use Array.slice() instead.
-* Cloning will preserve the instance of object, (Most clone library will not preserve it).
+* Cloning will preserve the instance of object, that's why it will preserve Array as Array not an Object (Most clone library will not preserve it).
 
 ```
 TypeAnnotation:
@@ -185,7 +185,7 @@ console.log(newCar instanceOf Car); // true
     
 ### 2. Recursive Assign Value to Object
 * This function will assign value according to path provided to an object.
-* When accessing properties on object that has deep nested properties, the warning just throw error that is not helpful.
+* When accessing properties on object that has deep nested properties, Vanilla js will just throw an error that is not helpful.
   With this function it will show the object and the path that fails.
 * Warning: this function mutate the object, so use it with deepCloneObject to achieve immutability.
 example:
@@ -219,7 +219,9 @@ obj.address.geoLocation.lat === 0; // true
     
     
 ### 3. Recursive Get Value from Object
-This function will retrieve value according to path provided to an object.
+* This function will retrieve value according to path provided to an object.
+* When accessing properties on object that has deep nested properties, Vanilla js will just throw an error that is not helpful.
+  With this function it will show the object and the path that fails.
 
 ```
 TypeAnnotation:

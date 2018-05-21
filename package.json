@@ -1,6 +1,6 @@
 {
   "name": "cute-js",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "Common Utilities",
   "main": "index.js",
   "scripts": {
