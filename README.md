@@ -1,5 +1,25 @@
 This Library contains some common helpful tools that I use the most as web developer.
-For documentation, A type annotation similart to Haskell is chosen as it's very compact and easy to read.
+
+# Guide for Type annotation
+For documentation, A type annotation that is similar to Haskell is chosen as it's very compact and clear to read.
+
+### Example1
+```
+    recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
+```
+1. the name of function is `recursiveAssignObject`
+2. This function return null;
+3. It accepts, 3 parameters: (obj, path, value).
+
+
+### Example2
+```
+   onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
+```
+1. the name of function is `onFieldChange`
+2. This function return Object of Any structure;
+3. It accepts, 2 parameters: (fieldPath, e).
+
 
 # Examples:
 ### 1. Updating a state in React
