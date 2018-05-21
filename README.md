@@ -5,7 +5,7 @@
     * [type1](#type1)
     * [type2](#type2)
 
-2. [Examples](#examples)
+2. [Examples](#examples-in-react)
     * [Updating State in React](#1-updating-and-validating-state-in-react)
 
 3. [List of Functions](#list-of-functions)
@@ -35,7 +35,7 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 3. It accepts, 2 parameters: (fieldPath, e).
 
 
-# Examples:
+# Examples in React:
 ### 1. Updating and validating state in React
 
 ```
