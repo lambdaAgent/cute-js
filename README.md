@@ -1,7 +1,64 @@
 This Library contains some common helpful tools that I use the most as web developer.
 
+# Examples:
+### 1. Updating a state in React
+
+```
+    import React from 'react';
+
+    class SimpleForm extends React.Component {
+        state = {
+            location: {
+                address: null,
+                country: null,
+                geoLocation: {
+                    lat: null,
+                    lng: null
+                }
+            }
+        }
+
+        render(){
+            return (
+                <form>
+                    <label>Latitude</label>
+                    <input
+                        value={this.state.location.geoLocation.lat}
+                        onChange={this.onFieldChange.bind(this, 'location.geoLocation.lat')}
+                    />
+
+                    <label>Longitude</label>
+                    <input
+                        value={this.state.location.geoLocation.lng}
+                        onChange={this.onFieldChange.bind(this, 'location.geoLocation.lng')}
+                    />
+                </form>
+            );
+        }
+
+        // onFieldChange = fieldPath::String -> e::Object{Event} -> null
+        onFieldChange = (fieldPath, e) => {
+            const value = e.target.value;
+            let cloneLocation = deepCloneObject(this.state);
+            recursiveAssignObject(cloneLocation, fieldPath, value );
+            this.setState({ location: cloneLocation });
+        }
+    }
+
+    export default SimpleForm;
+```
+
+
+
+# Functions:
 ### 1.Deep Clone Object
 This function will clone an object, a very simple and fast immutability function.
+It works with array too. Although it's more efficient to use Array.slice() instead.
+
+```
+    TypeAnnotation:
+    deepCloneObject = Obj{} -> Obj{}
+```
 
 example: 
     
@@ -25,8 +82,7 @@ example:
     newObj.postalCode = '1';
 
 To cater a need to clone an instance of class. 
-deepCloneObject will still preserve the instance of class. 
-
+deepCloneObject will still preserve the instance of class.
 
 example: 
     
@@ -48,8 +104,14 @@ example:
 * When accessing properties on object that has deep nested properties, the warning just throw error that is not helpful.
   With this function it will show the object and the path that fails.
 * Warning: this function mutate the object, so use it with deepCloneObject to achieve immutability.
-example: 
-    
+example:
+
+```
+    TypeAnnotation:
+    recursiveAssignObject = Obj{} -> path:String -> value:Any -> null
+```
+
+```
     import { recursiveAssignObject } from 'cute-js';
         
     const obj = {
@@ -69,12 +131,17 @@ example:
     recursiveAssignObject(obj, 'address.geoLocation.lat', 0);
     obj.address.postalCode === 123; // true
     obj.address.geoLocation.lat === 0; // true
-    
+```
     
     
 ### 3. Recursive Get Value from Object
 This function will retrieve value according to path provided to an object.
-    
+
+```
+    TypeAnnotation:
+    recursivelyGetProperties = Obj {} -> path:String -> value:Any
+```
+
     import { recursivelyGetProperties } from 'cute-js';
         
     const obj = {
