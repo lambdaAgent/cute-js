@@ -36,10 +36,11 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 
 
 # Examples:
-### 1. Updating a state in React
+### 1. Updating and validating state in React
 
 ```
     import React from 'react';
+    import {recursivelyGetProperties, recursiveAssignObject, deepCloneObject } from 'cute-js';
 
     class SimpleForm extends React.Component {
         state = {
@@ -60,12 +61,14 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
                     <input
                         value={this.state.location.geoLocation.lat}
                         onChange={this.onFieldChange.bind(this, 'location.geoLocation.lat')}
+                        onBlur{this.onValidating.bind(this, 'location.geoLocation.lat')}
                     />
 
                     <label>Longitude</label>
                     <input
                         value={this.state.location.geoLocation.lng}
                         onChange={this.onFieldChange.bind(this, 'location.geoLocation.lng')}
+                        onBlur{this.onValidating.bind(this, 'location.geoLocation.lng')}
                     />
                 </form>
             );
@@ -77,6 +80,15 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
             let cloneLocation = deepCloneObject(this.state);
             recursiveAssignObject(cloneLocation, fieldPath, value );
             this.setState({ location: cloneLocation });
+        }
+
+        // onValidating = fieldPath:String -> e:Object{Event} -> null
+        onValidating = (fieldPath, e) => {
+            const value = recursivelyGetProperties(this.state.location, fieldPath );
+            const isValid = !!value;
+            if(!isValid){
+                console.error('Not valid')
+            }
         }
     }
 
