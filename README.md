@@ -16,12 +16,13 @@
 # Guide for Type annotation
 For documentation, A type annotation that is similar to Haskell is chosen as it's very compact and clear to read.
 
+## Example Of Types:
 ### type1
 ```
     recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
 ```
 1. the name of function is `recursiveAssignObject`
-2. This function return null;
+2. This function return `null`
 3. It accepts, 3 parameters: (obj, path, value).
 
 
@@ -30,7 +31,7 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
    onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
 ```
 1. the name of function is `onFieldChange`
-2. This function return Object of Any structure;
+2. This function return `Object of Any structure`
 3. It accepts, 2 parameters: (fieldPath, e).
 
 
