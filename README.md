@@ -61,14 +61,26 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
                     <input
                         value={this.state.location.geoLocation.lat}
                         onChange={this.onFieldChange.bind(this, 'location.geoLocation.lat')}
-                        onBlur{this.onValidating.bind(this, 'location.geoLocation.lat')}
+                        onBlur={this.onValidating.bind(this, 'location.geoLocation.lat')}
                     />
 
                     <label>Longitude</label>
                     <input
                         value={this.state.location.geoLocation.lng}
                         onChange={this.onFieldChange.bind(this, 'location.geoLocation.lng')}
-                        onBlur{this.onValidating.bind(this, 'location.geoLocation.lng')}
+                        onBlur={this.onValidating.bind(this, 'location.geoLocation.lng')}
+                    />
+                    <label>Address</label>
+                    <input
+                        value={this.state.location.address}
+                        onChange={this.onFieldChange.bind(this, 'location.address')}
+                        onBlur={this.onValidating.bind(this, 'location.address')}
+                    />
+                    <label>Country</label>
+                    <input
+                        value={this.state.location.country}
+                        onChange={this.onFieldChange.bind(this, 'location.country')}
+                        onBlur={this.onValidating.bind(this, 'location.country')}
                     />
                 </form>
             );

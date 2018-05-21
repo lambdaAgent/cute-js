@@ -14,6 +14,6 @@ exports.recursivelyGetProperties = function recursivelyGetProperties(obj, addres
   
   handleFailure(obj, headAddress);
   const memoizedObj = obj[headAddress];
-  return recursivelyGetValue(memoizedObj, tailAddress);
+  return recursivelyGetProperties(memoizedObj, tailAddress);
 }
 
