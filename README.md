@@ -77,14 +77,15 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
         // onFieldChange = fieldPath:String -> e:Object{Event} -> null
         onFieldChange = (fieldPath, e) => {
             const value = e.target.value;
-            let cloneLocation = deepCloneObject(this.state);
-            recursiveAssignObject(cloneLocation, fieldPath, value );
-            this.setState({ location: cloneLocation });
+            const cloneState = deepCloneObject(this.state);
+            const { location } = cloneState;
+            recursiveAssignObject(location, fieldPath, value );
+            this.setState({ location });
         }
 
         // onValidating = fieldPath:String -> e:Object{Event} -> null
         onValidating = (fieldPath, e) => {
-            const value = recursivelyGetProperties(this.state.location, fieldPath );
+            const value = recursivelyGetProperties(this.state, fieldPath );
             const isValid = !!value;
             if(!isValid){
                 console.error('Not valid')
