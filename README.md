@@ -2,11 +2,10 @@ This Library contains some common helpful tools that I use the most as web devel
 
 ### 1.Deep Clone Object
 This function will clone an object, a very simple and fast immutability function.
+
 example: 
     
-    import { deepCloneObject, deepEqual } from 'cute-js';
-    // deepEqual is work in progess
-        
+    import { deepCloneObject } from 'cute-js';        
     const obj = {
         name: 'Joe',
         age: 23,
@@ -22,10 +21,27 @@ example:
     
     const newObj = deepCloneObject(obj);
     
-    deepEqual(newObj, obj); // true
-    
     newObj.age = 5;
     newObj.postalCode = '1';
+
+To cater a need to clone an instance of class. 
+deepCloneObject will still preserve the instance of class. 
+
+
+example: 
+    
+    import { deepCloneObject } from 'cute-js';        
+    class Car {
+        constructor(name, made){
+            this.name = name
+            this.made = made
+        }
+    }
+    
+    const aCar = new Car('Mazda',2018);
+    const newCar = deepClone(aCar);
+    
+    console.log(newCar instanceOf Car); // true
     
 ### 2. Recursive Assign Value to Object
 * This function will assign value according to path provided to an object.

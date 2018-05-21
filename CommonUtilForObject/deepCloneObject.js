@@ -20,9 +20,3 @@ exports.deepCloneObject = function deepCloneObject(obj, options) {
   }
   return temp;
 }
-
-
-
-function deepEqualObject(obj1, obj2) {
-  // work in progress
-}
