@@ -54,6 +54,7 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
             }
         }
 
+        
         render(){
             return (
                 <form>
@@ -63,7 +64,6 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
                         onChange={this.onFieldChange.bind(this, 'location.geoLocation.lat')}
                         onBlur={this.onValidating.bind(this, 'location.geoLocation.lat')}
                     />
-
                     <label>Longitude</label>
                     <input
                         value={this.state.location.geoLocation.lng}
@@ -90,9 +90,8 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
         onFieldChange = (fieldPath, e) => {
             const value = e.target.value;
             const cloneState = deepCloneObject(this.state);
-            const { location } = cloneState;
-            recursiveAssignObject(location, fieldPath, value );
-            this.setState({ location });
+            recursiveAssignObject(cloneState, fieldPath, value );
+            this.setState({ location: cloneState.location });
         }
 
         // onValidating = fieldPath:String -> e:Object{Event} -> null
