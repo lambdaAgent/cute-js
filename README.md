@@ -17,72 +17,72 @@
 ### 1. Updating and validating state in React
 
 ```
-    import React from 'react';
-    import {recursivelyGetProperties, recursiveAssignObject, deepCloneObject } from 'cute-js';
+import React from 'react';
+import {recursivelyGetProperties, recursiveAssignObject, deepCloneObject } from 'cute-js';
 
-    class SimpleForm extends React.Component {
-        state = {
-            location: {
-                address: null,
-                country: null,
-                geoLocation: {
-                    lat: null,
-                    lng: null
-                }
-            }
-        }
-
-        
-        render(){
-            return (
-                <form>
-                    <label>Latitude</label>
-                    <input
-                        value={this.state.location.geoLocation.lat}
-                        onChange={this.onFieldChange.bind(this, 'location.geoLocation.lat')}
-                        onBlur={this.onValidating.bind(this, 'location.geoLocation.lat')}
-                    />
-                    <label>Longitude</label>
-                    <input
-                        value={this.state.location.geoLocation.lng}
-                        onChange={this.onFieldChange.bind(this, 'location.geoLocation.lng')}
-                        onBlur={this.onValidating.bind(this, 'location.geoLocation.lng')}
-                    />
-                    <label>Address</label>
-                    <input
-                        value={this.state.location.address}
-                        onChange={this.onFieldChange.bind(this, 'location.address')}
-                        onBlur={this.onValidating.bind(this, 'location.address')}
-                    />
-                    <label>Country</label>
-                    <input
-                        value={this.state.location.country}
-                        onChange={this.onFieldChange.bind(this, 'location.country')}
-                        onBlur={this.onValidating.bind(this, 'location.country')}
-                    />
-                </form>
-            );
-        }
-
-        // onFieldChange = fieldPath:String -> e:Object{Event} -> null
-        onFieldChange = (fieldPath, e) => {
-            const value = e.target.value;
-            const cloneState = deepCloneObject(this.state);
-            recursiveAssignObject(cloneState, fieldPath, value );
-            this.setState({ location: cloneState.location });
-        }
-
-        // onValidating = fieldPath:String -> e:Object{Event} -> null
-        onValidating = (fieldPath, e) => {
-            const value = recursivelyGetProperties(this.state, fieldPath );
-            const isValid = !!value;
-            if(!isValid){
-                console.error('Not valid')
+class SimpleForm extends React.Component {
+    state = {
+        location: {
+            address: null,
+            country: null,
+            geoLocation: {
+                lat: null,
+                lng: null
             }
         }
     }
 
-    export default SimpleForm;
+    
+    render(){
+        return (
+            <form>
+                <label>Latitude</label>
+                <input
+                    value={this.state.location.geoLocation.lat}
+                    onChange={this.onFieldChange.bind(this, 'location.geoLocation.lat')}
+                    onBlur={this.onValidating.bind(this, 'location.geoLocation.lat')}
+                />
+                <label>Longitude</label>
+                <input
+                    value={this.state.location.geoLocation.lng}
+                    onChange={this.onFieldChange.bind(this, 'location.geoLocation.lng')}
+                    onBlur={this.onValidating.bind(this, 'location.geoLocation.lng')}
+                />
+                <label>Address</label>
+                <input
+                    value={this.state.location.address}
+                    onChange={this.onFieldChange.bind(this, 'location.address')}
+                    onBlur={this.onValidating.bind(this, 'location.address')}
+                />
+                <label>Country</label>
+                <input
+                    value={this.state.location.country}
+                    onChange={this.onFieldChange.bind(this, 'location.country')}
+                    onBlur={this.onValidating.bind(this, 'location.country')}
+                />
+            </form>
+        );
+    }
+
+    // onFieldChange = fieldPath:String -> e:Object{Event} -> null
+    onFieldChange = (fieldPath, e) => {
+        const value = e.target.value;
+        const cloneState = deepCloneObject(this.state);
+        recursiveAssignObject(cloneState, fieldPath, value );
+        this.setState({ location: cloneState.location });
+    }
+
+    // onValidating = fieldPath:String -> e:Object{Event} -> null
+    onValidating = (fieldPath, e) => {
+        const value = recursivelyGetProperties(this.state, fieldPath );
+        const isValid = !!value;
+        if(!isValid){
+            console.error('Not valid')
+        }
+    }
+}
+
+export default SimpleForm;
 ```
 
 
@@ -92,7 +92,7 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 ## Example Of Types:
 ### type1
 ```
-    recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
+recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
 ```
 1. the name of function is `recursiveAssignObject`
 2. This function return `null`
@@ -101,7 +101,7 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 
 ### type2
 ```
-   onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
+onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
 ```
 1. the name of function is `onFieldChange`
 2. This function return `Object of Any structure`
@@ -115,48 +115,50 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 * It works with array too, although it's more efficient to use Array.slice() instead.
 
 ```
-    TypeAnnotation:
-    deepCloneObject = obj:Obj{Any} -> Options:Obj{ excludeKey:Bool } -> Obj{ Any }
+TypeAnnotation:
+deepCloneObject = obj:Obj{Any} -> Options:Obj{ excludeKey:Bool } -> Obj{ Any }
 ```
 
 example: 
-    
-    import { deepCloneObject } from 'cute-js';        
-    const obj = {
-        name: 'Joe',
-        age: 23,
-        address: {
-            street: 'somewhere drv, no.23',
-            postalCode: '11520',
-            geoLocation: {
-              lat: -6.12314,
-              lon: 108.123123
-            }
-        },
-    }
-    
-    const newObj = deepCloneObject(obj);
-    
-    newObj.age = 5;
-    newObj.postalCode = '1';
+```
+import { deepCloneObject } from 'cute-js';        
+const obj = {
+    name: 'Joe',
+    age: 23,
+    address: {
+        street: 'somewhere drv, no.23',
+        postalCode: '11520',
+        geoLocation: {
+            lat: -6.12314,
+            lon: 108.123123
+        }
+    },
+}
+
+const newObj = deepCloneObject(obj);
+
+newObj.age = 5;
+newObj.postalCode = '1';
+```
 
 To cater a need to clone an instance of class. 
 deepCloneObject will still preserve the instance of class.
 
 example: 
-    
-    import { deepCloneObject } from 'cute-js';        
-    class Car {
-        constructor(name, made){
-            this.name = name
-            this.made = made
-        }
+```    
+import { deepCloneObject } from 'cute-js';        
+class Car {
+    constructor(name, made){
+        this.name = name
+        this.made = made
     }
-    
-    const aCar = new Car('Mazda',2018);
-    const newCar = deepClone(aCar);
-    
-    console.log(newCar instanceOf Car); // true
+}
+
+const aCar = new Car('Mazda',2018);
+const newCar = deepClone(aCar);
+
+console.log(newCar instanceOf Car); // true
+```
     
 ### 2. Recursive Assign Value to Object
 * This function will assign value according to path provided to an object.
@@ -166,30 +168,30 @@ example:
 example:
 
 ```
-    TypeAnnotation:
-    recursiveAssignObject = Obj{Any} -> path:String -> value:Any -> null
+TypeAnnotation:
+recursiveAssignObject = Obj{Any} -> path:String -> value:Any -> null
 ```
 
 ```
-    import { recursiveAssignObject } from 'cute-js';
-        
-    const obj = {
-        name: 'Joe',
-        age: 23,
-        address: {
-            street: 'somewhere drv, no.23',
-            postalCode: '11520',
-            geoLocation: {
-              lat: -6.12314,
-              lon: 108.123123
-            }
-        },
-    }
+import { recursiveAssignObject } from 'cute-js';
     
-    recursiveAssignObject(obj, 'address.postalCode', 123);
-    recursiveAssignObject(obj, 'address.geoLocation.lat', 0);
-    obj.address.postalCode === 123; // true
-    obj.address.geoLocation.lat === 0; // true
+const obj = {
+    name: 'Joe',
+    age: 23,
+    address: {
+        street: 'somewhere drv, no.23',
+        postalCode: '11520',
+        geoLocation: {
+            lat: -6.12314,
+            lon: 108.123123
+        }
+    },
+}
+
+recursiveAssignObject(obj, 'address.postalCode', 123);
+recursiveAssignObject(obj, 'address.geoLocation.lat', 0);
+obj.address.postalCode === 123; // true
+obj.address.geoLocation.lat === 0; // true
 ```
     
     
@@ -197,24 +199,25 @@ example:
 This function will retrieve value according to path provided to an object.
 
 ```
-    TypeAnnotation:
-    recursivelyGetProperties = Obj {} -> path:String -> value:Any
+TypeAnnotation:
+recursivelyGetProperties = Obj {} -> path:String -> value:Any
 ```
-
-    import { recursivelyGetProperties } from 'cute-js';
-        
-    const obj = {
-        name: 'Joe',
-        age: 23,
-        address: {
-            street: 'somewhere drv, no.23',
-            postalCode: '11520',
-            geoLocation: {
-              lat: -6.12314,
-              lon: 108.123123
-            }
-        },
-    }
+```
+import { recursivelyGetProperties } from 'cute-js';
     
-    recursivelyGetProperties(obj, 'address.postalCode'); // '11520'
-    recursivelyGetProperties(obj, 'address.geoLocation.lat'); //-6.12314
+const obj = {
+    name: 'Joe',
+    age: 23,
+    address: {
+        street: 'somewhere drv, no.23',
+        postalCode: '11520',
+        geoLocation: {
+            lat: -6.12314,
+            lon: 108.123123
+        }
+    },
+}
+
+recursivelyGetProperties(obj, 'address.postalCode'); // '11520'
+recursivelyGetProperties(obj, 'address.geoLocation.lat'); //-6.12314
+```
