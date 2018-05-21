@@ -6,7 +6,7 @@
     * [type2](#type2)
 
 2. [Examples](#examples)
-    * [Updating State in React](#1-updating-a-state-in-react)
+    * [Updating State in React](#1-updating-and-validating-state-in-react)
 
 3. [List of Functions](#list-of-functions)
     * [deepCloneObject](#1deep-clone-object)
