@@ -135,6 +135,7 @@ onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
 ### 1.Deep Clone Object
 * This function will clone an object, a very simple and fast immutability function.
 * It works with array too, although it's more efficient to use Array.slice() instead.
+* Cloning will preserve the instance of object, (Most clone library will not preserve it).
 
 ```
 TypeAnnotation:
@@ -177,7 +178,7 @@ class Car {
 }
 
 const aCar = new Car('Mazda',2018);
-const newCar = deepClone(aCar);
+const newCar = deepCloneObject(aCar);
 
 console.log(newCar instanceOf Car); // true
 ```
