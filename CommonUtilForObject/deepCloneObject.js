@@ -1,8 +1,6 @@
-/** example: 
-* const obj = { one, two, three: ['three'], four:{ four: true } };
-* const newObj = deepCloneObject(obj);
-* console.log(newObj) //{ one, two, three: ['three'], four:{ four: true } };
-*/
+/** 
+  * deepCloneObject = obj:Obj{Any} -> Options:Obj{ excludeKey:Bool } -> Obj{ Any }
+  */
 
 exports.deepCloneObject = function deepCloneObject(obj, options) {
   const excludeKey = options && options.excludeKey;

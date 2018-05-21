@@ -1,11 +1,7 @@
 const { handleFailure } = require('./handleFailure');
 
-/**
- * example:
- * const obj = { one, two, three: ['three'], four:{ four: true }, address: {postalCode: 12345} };
- * const postalCode = recursivelyGetProperties(obj, 'address.postalCode')
+/* recursivelyGetProperties = Obj{Any} -> address:String -> value:Any 
  */
-
 exports.recursivelyGetProperties = function recursivelyGetProperties(obj, address){
   if (!address) return obj;
   if (address.indexOf('.') < 0) {

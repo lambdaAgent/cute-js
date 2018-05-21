@@ -1,4 +1,5 @@
 This Library contains some common helpful tools that I use the most as web developer.
+For documentation, A type annotation similart to Haskell is chosen as it's very compact and easy to read.
 
 # Examples:
 ### 1. Updating a state in React
@@ -36,7 +37,7 @@ This Library contains some common helpful tools that I use the most as web devel
             );
         }
 
-        // onFieldChange = fieldPath::String -> e::Object{Event} -> null
+        // onFieldChange = fieldPath:String -> e:Object{Event} -> null
         onFieldChange = (fieldPath, e) => {
             const value = e.target.value;
             let cloneLocation = deepCloneObject(this.state);
@@ -57,7 +58,7 @@ It works with array too. Although it's more efficient to use Array.slice() inste
 
 ```
     TypeAnnotation:
-    deepCloneObject = Obj{} -> Obj{}
+    deepCloneObject = obj:Obj{Any} -> Options:Obj{ excludeKey:Bool } -> Obj{ Any }
 ```
 
 example: 
@@ -108,7 +109,7 @@ example:
 
 ```
     TypeAnnotation:
-    recursiveAssignObject = Obj{} -> path:String -> value:Any -> null
+    recursiveAssignObject = Obj{Any} -> path:String -> value:Any -> null
 ```
 
 ```
