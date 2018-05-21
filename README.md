@@ -80,7 +80,7 @@ class SimpleForm extends React.Component {
         );
     }
 
-    // onFieldChange = fieldPath:String -> e:Object{Event} -> null
+  //onFieldChange = fieldPath::String -> e::Object{Event} -> null
     onFieldChange = (fieldPath, e) => {
         const value = e.target.value;
         const cloneState = deepCloneObject(this.state);
@@ -89,7 +89,7 @@ class SimpleForm extends React.Component {
         this.setState({ location });
     }
 
-    // onValidating = fieldPath:String -> e:Object{Event} -> null
+ // onValidating = fieldPath::String -> e::Object{Event} -> null
     onValidating = (fieldPath, e) => {
         const value = recursivelyGetProperties(this.state.location, fieldPath );
         const cloneError = deepCloneObject(this.state.errorLocation);
@@ -114,7 +114,7 @@ For documentation, A type annotation that is similar to Haskell is chosen as it'
 ## Example Of Types:
 ### type1
 ```
-recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
+recursiveAssignObject = obj::Obj{Any} -> path::String -> value::Any -> null
 ```
 1. the name of function is `recursiveAssignObject`
 2. This function return `null`
@@ -123,7 +123,7 @@ recursiveAssignObject = obj:Obj{Any} -> path:String -> value:Any -> null
 
 ### type2
 ```
-onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
+onFieldChange = fieldPath::String -> e::Object{Event} -> Object { Any }
 ```
 1. the name of function is `onFieldChange`
 2. This function return `Object of Any structure`
@@ -139,7 +139,7 @@ onFieldChange = fieldPath:String -> e:Object{Event} -> Object { Any }
 
 ```
 TypeAnnotation:
-deepCloneObject = obj:Obj{Any} -> Options:Obj{ excludeKey:Bool } -> Obj{ Any }
+deepCloneObject = obj::Obj{Any} -> opt::Obj{ excludeKey::Bool } -> Obj{ Any }
 ```
 
 example: 
@@ -192,7 +192,7 @@ example:
 
 ```
 TypeAnnotation:
-recursiveAssignObject = Obj{Any} -> path:String -> value:Any -> null
+recursiveAssignObject = Obj{Any} -> path::String -> value::Any -> null
 ```
 
 ```
@@ -225,7 +225,7 @@ obj.address.geoLocation.lat === 0; // true
 
 ```
 TypeAnnotation:
-recursivelyGetProperties = Obj {} -> path:String -> value:Any
+recursivelyGetProperties = Obj {Any} -> path::String -> value::Any
 ```
 ```
 import { recursivelyGetProperties } from 'cute-js';
